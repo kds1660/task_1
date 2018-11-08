@@ -40,7 +40,7 @@ export class WorldService{
                 ].filter(aCell => aCell.isActive);
 
                 if (aWorlArray[row][cell].isActive) {
-                    if (activeNeibours.length < 2 || activeNeibours.length > 3) {
+                    if (activeNeibours.length === 2 || activeNeibours.length === 3) {
                         aWorlArray[row][cell].isWillChanged = true;
                         this.isNextTurn = true;
                     }
