@@ -1,0 +1,39 @@
+body {
+  font-size: 16px;
+}
+html, body {
+  box-sizing: border-box;
+  height: 100%;
+  margin: 0;
+  font-size: 1vw;
+}
+.controls {
+  display: flex;
+  justify-content: space-between;
+  border: lightgray;
+  background-color: lightgray;
+  width: 40.3em;
+  border-radius: 0.5em;
+}
+
+.controls * {
+  margin: 0.5rem;
+}
+
+.world {
+  border: solid 2px #000;
+  display: grid;
+  width: 40em;
+  height: 40em;
+  background-color: beige;
+}
+
+.gridsquare {
+  border: 0.5px solid darkgray;
+  background-color: white;
+  padding: 0;
+}
+
+.active {
+  background-color: #d9480f;
+}

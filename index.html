@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>World</title>
+    <link rel="stylesheet" href="index.css">
+    <script type="module" src="./dist/bundle.js" defer></script>
+</head>
+<body>
+<div class="controls">
+    <div>
+        <label for="Select">Select render</label>
+        <select id="select"></select>
+    </div>
+    <div>
+        <label for="size">Size</label>
+        <input id="size" type="number" value="100">
+    </div>
+    <button class="start">Start</button>
+    <button class="pause">Pause</button>
+    <button class="stop">Stop</button>
+    <span class="counter">0</span>
+</div>
+<div class="container">
+    <div class="world">
+    </div>
+</div>
+</body>
+</html>
