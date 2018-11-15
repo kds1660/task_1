@@ -18,9 +18,12 @@ export class WorldService{
     }
 
     recalculateWorld(aWorlArray) {
+        let rechargedArray = [];
         this.isNextTurn = false;
         for(let row = 0; row < this.areaSize; row++) {
+            let rechargedRow = [];
             for (let cell = 0; cell < this.areaSize; cell++) {
+                let rechargedCell;
                 const coordinates = {
                     up: row - 1 < 0 ? this.areaSize - 1 : row - 1,
                     down: row + 1 < this.areaSize ? row + 1 : 0,
@@ -28,7 +31,7 @@ export class WorldService{
                     right: cell + 1 < this.areaSize - 1 ? cell + 1 : 0
                 };
 
-                const activeNeibours = [
+                const activeNeighbours = [
                     aWorlArray[coordinates.up][coordinates.left],
                     aWorlArray[coordinates.up][cell],
                     aWorlArray[coordinates.up][coordinates.right],
@@ -40,30 +43,27 @@ export class WorldService{
                 ].filter(aCell => aCell.isActive);
 
                 if (aWorlArray[row][cell].isActive) {
-                    if (activeNeibours.length === 2 || activeNeibours.length === 3) {
-                        aWorlArray[row][cell].isWillChanged = true;
+                    if (activeNeighbours.length === 2 || activeNeighbours.length === 3) {
+                    } else {
+                        rechargedCell = Object.assign({}, aWorlArray[row][cell]);
+                        rechargedCell.isActive = false;
                         this.isNextTurn = true;
                     }
-                } else if (activeNeibours.length === 3) {
-                    aWorlArray[row][cell].isWillChanged = true;
+                } else if (activeNeighbours.length === 3) {
+                    rechargedCell = Object.assign({}, aWorlArray[row][cell]);
+                    rechargedCell.isActive = true;
                     this.isNextTurn = true;
                 }
 
-            }
-        }
-        console.log(this.isNextTurn)
-    }
+                rechargedCell ?
+                    rechargedRow.push(rechargedCell):
+                    rechargedRow.push( aWorlArray[row][cell]);
 
-    reChargeWorldForNextCalculation(aWorlArray) {
-        for(let row = 0; row < this.areaSize; row++) {
-            for (let cell = 0; cell < this.areaSize; cell++) {
-                const cellObject = aWorlArray[row][cell];
-                if (cellObject.isWillChanged) {
-                    cellObject.isWillChanged = false;
-                    cellObject.isActive = !cellObject.isActive;
-                }
             }
+            rechargedArray.push(rechargedRow);
         }
+
+        return rechargedArray;
     }
 
     isNeedNextTurn() {

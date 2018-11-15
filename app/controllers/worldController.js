@@ -50,10 +50,9 @@ export class WorldController {
 
     turn() {
         this.currentTurn++;
-        this.worldService.recalculateWorld(this.worldModel.world);
+        this.worldModel.world = this.worldService.recalculateWorld(this.worldModel.world);
         this.worldView.updateCounter(this.currentTurn);
         this.worldView.draw(this.worldModel.world);
-        this.worldService.reChargeWorldForNextCalculation(this.worldModel.world);
         // check if we need next turn
         if (!this.worldService.isNeedNextTurn()) {
             this.stop();
