@@ -38,7 +38,7 @@ export class WorldView {
             element.addEventListener("input", (e) => {
                 this.atachHandler(aHandler, e)
             });
-        } else if (element.tagName === "SELECT") {
+        } else if (element.tagName === "select") {
             element.addEventListener("change", (e) => {
                 this.atachHandler(aHandler, e.target.dataset)
             });

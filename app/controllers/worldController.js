@@ -6,22 +6,27 @@ export class WorldController {
         this.worldService = worldService;
         this.worldView = worldView;
         this.constants = constants;
-        this.initWorldRenderer();
         this.initWorld();
-        this.worldView.draw(this.worldModel.world);
-        console.log("init")
+        this.initControlsListeners();
+        this.initWorldListeners();
     }
 
-    initWorldRenderer() {
+    initControlsListeners() {
         this.worldView.bindListener(this.constants.events.startSelector, this.startPause.bind(this));
         this.worldView.bindListener(this.constants.events.pauseSelector, this.startPause.bind(this));
         this.worldView.bindListener(this.constants.events.stopSelector, this.stop.bind(this));
-        this.worldView.bindListener(this.constants.events.worldSelector, this.wordCellStatus.bind(this));
+        this.worldView.bindListener(this.constants.events.worldSelector, this.initWorld.bind(this));
         this.worldView.bindListener(this.constants.events.sizeSelector, this.setSize.bind(this));
     }
 
+    initWorldListeners() {
+        this.worldView.bindListener(this.constants.events.worldContainer, this.wordCellStatus.bind(this));
+    }
+
     initWorld() {
-        const world = this.worldService.initWorldArray(this.worldModel.world);
+        this.worldService.initWorldArray(this.worldModel.world);
+        this.worldView.draw(this.worldModel.world);
+        this.initWorldListeners();
     }
 
     startPause() {
@@ -45,6 +50,7 @@ export class WorldController {
             this.worldView.updateCounter(this.currentTurn);
             this.initWorld();
             this.worldView.draw(this.worldModel.world);
+            this.initWorldListeners();
         }
     }
 
@@ -65,6 +71,7 @@ export class WorldController {
             this.worldService.areaSize = size;
             this.initWorld();
             this.worldView.draw(this.worldModel.world);
+            this.initWorldListeners();
         }
     }
 
@@ -81,6 +88,6 @@ export class WorldController {
         } else {
             throw new Error("Invalid cell coordinates")
         }
-        this.worldView.redrawCell(aData.positionX, aData.positionY, cell.isActive)
+        this.worldView.redrawCell(aData.positionX, aData.positionY, cell.isActive);
     }
 }

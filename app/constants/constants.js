@@ -3,7 +3,8 @@ export const constants = {
         startSelector: ".start",
         pauseSelector: ".pause",
         stopSelector: ".stop",
-        worldSelector: ".container",
+        worldSelector: "#select",
+        worldContainer: ".world",
         sizeSelector: "#size"
     },
     timeInterval: 500,
