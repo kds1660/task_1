@@ -12,8 +12,15 @@ html, body {
   justify-content: space-between;
   border: lightgray;
   background-color: lightgray;
-  width: 40.3em;
+  width: 43.3em;
   border-radius: 0.5em;
+}
+
+.counter {
+  width: 3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .controls * {
@@ -23,8 +30,8 @@ html, body {
 .world {
   border: solid 2px #000;
   display: grid;
-  width: 40em;
-  height: 40em;
+  width: 43em;
+  height: 43em;
   background-color: beige;
 }
 
@@ -32,8 +39,12 @@ html, body {
   border: 0.5px solid darkgray;
   background-color: white;
   padding: 0;
+  fill: white;
+  stroke-width: 1;
+  stroke: darkgray;
 }
 
 .active {
   background-color: #d9480f;
+  fill: #d9480f;
 }

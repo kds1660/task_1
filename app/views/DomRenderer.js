@@ -1,7 +1,9 @@
-export class DomRenderer {
+import {BaseRenderer} from "./baseRenderer"
+
+export class DomRenderer extends BaseRenderer{
     constructor() {
+        super();
         this.label = "DomRenderer";
-        this.container = document.querySelector(".container");
     }
 
     draw(aWorlArray) {

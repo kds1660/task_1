@@ -11,9 +11,7 @@ export class WorldView {
         });
 
         selector.addEventListener("click", (e) => {
-            console.log(this.renderers, e.target.value);
             this.currentRenderer = this.renderers.find(aRenderer => aRenderer.label === e.target.value);
-
             if(!this.currentRenderer) {
                 throw new Error("Invalid renderer " +e.target.value);
             }
@@ -39,6 +37,10 @@ export class WorldView {
         if (element.type === "number") {
             element.addEventListener("input", (e) => {
                 this.atachHandler(aHandler, e)
+            });
+        } else if (element.tagName === "SELECT") {
+            element.addEventListener("change", (e) => {
+                this.atachHandler(aHandler, e.target.dataset)
             });
         } else {
             element.addEventListener("click", (e) => {
