@@ -1,6 +1,7 @@
 export class WorldController {
     constructor(worldModel, worldService, worldView, constants) {
         this.timeInterval = null;
+        this.pause = false;
         this.currentTurn = 0;
         this.worldModel = worldModel;
         this.worldService = worldService;
