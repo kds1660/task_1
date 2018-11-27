@@ -3,19 +3,22 @@ export class WorldView {
         this.renderers = [...renderers];
         this.currentRenderer = this.renderers[0];
         const selector = document.querySelector("#select");
-        this.renderers.forEach((aRenderer) => {
-            const opt = document.createElement('option');
-            opt.value = aRenderer.label;
-            opt.innerHTML = aRenderer.label;
-            selector.appendChild(opt);
-        });
 
-        selector.addEventListener("click", (e) => {
-            this.currentRenderer = this.renderers.find(aRenderer => aRenderer.label === e.target.value);
-            if(!this.currentRenderer) {
-                throw new Error("Invalid renderer " +e.target.value);
-            }
-        })
+        if (selector) {
+            this.renderers.forEach((aRenderer) => {
+                const opt = document.createElement('option');
+                opt.value = aRenderer.label;
+                opt.innerHTML = aRenderer.label;
+                selector.appendChild(opt);
+            });
+
+            selector.addEventListener("click", (e) => {
+                this.currentRenderer = this.renderers.find(aRenderer => aRenderer.label === e.target.value);
+                if(!this.currentRenderer) {
+                    throw new Error("Invalid renderer " + e.target.value);
+                }
+            })
+        }
     }
 
     draw(aWorlArray) {
