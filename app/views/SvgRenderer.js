@@ -14,7 +14,7 @@ export class SvgRenderer extends BaseRenderer{
     draw(aWorlArray) {
         const length = aWorlArray.length;
         this.drawArea = document.querySelector(".world");
-        const widthInPx = getComputedStyle(this.drawArea)
+        const widthInPx = window.getComputedStyle(this.drawArea)
             .getPropertyValue('width')
             .match(/\d+/);
         this.drawArea.remove();

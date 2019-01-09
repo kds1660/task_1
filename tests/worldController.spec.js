@@ -7,12 +7,18 @@ import {SvgRenderer} from "../app/views/SvgRenderer";
 import {WorldService} from "../app/services/worldService.js"
 import {expect} from "chai";
 import {JSDOM} from 'jsdom';
-const { document } = (new JSDOM('')).window;
-global.document = document;
+
+before(function(done) {
+    JSDOM.fromFile('index.html')
+        .then((dom) => {
+            global.window = dom.window;
+            global.document = dom.window.document;
+        })
+        .then(done, done);
+});
 
 describe("Controller tests", () => {
     it("Controller created", () => {
-        console.log(document)
         const worldModel = new WorldModel();
         const domRenderer = new DomRenderer();
         const svgRenderer = new SvgRenderer();

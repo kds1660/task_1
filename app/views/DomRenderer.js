@@ -12,7 +12,7 @@ export class DomRenderer extends BaseRenderer{
         const grid = document.createElement("div");
         grid.classList.add("world");
         const size = aWorlArray.length;
-        const gridLength = getComputedStyle(grid).width;
+        const gridLength = window.getComputedStyle(grid).width;
         grid.style.gridTemplateColumns= `repeat(${size}, 1Fr)`;
         for (let rowNum = 0; rowNum < size; rowNum++) {
             for (let colNum = 0; colNum < size; colNum++) {
